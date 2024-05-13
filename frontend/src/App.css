@@ -1,3 +1,10 @@
+body {
+  width: 430px;
+  height: 932px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
 .App {
   text-align: center;
 }
