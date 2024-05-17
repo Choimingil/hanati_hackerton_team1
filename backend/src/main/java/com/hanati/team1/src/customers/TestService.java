@@ -1,12 +1,11 @@
-package com.hanati.team1.src.domain1;
+package com.hanati.team1.src.customers;
 
-import com.hanati.team1.src.domain1.entities.TestEntity;
-import com.hanati.team1.src.domain1.models.PostTestReq;
+import com.hanati.team1.src.customers.entities.User;
+import com.hanati.team1.src.customers.models.PostTestReq;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +19,7 @@ public class TestService {
      */
     @Transactional
     public long create(){
-        TestEntity entity = testRepository.save(new TestEntity());
+        User entity = testRepository.save(new User());
         return entity.getId();
     }
 
@@ -29,7 +28,7 @@ public class TestService {
      */
     @Transactional
     public boolean update(PostTestReq req, long id){
-        TestEntity entity = testRepository.findById(id);
+        User entity = testRepository.findById(id);
         entity.setEmail(req.getEmail());
         entity.setPassword(req.getPassword());
         return true;
@@ -40,7 +39,7 @@ public class TestService {
      */
     @Transactional
     public boolean delete(long id){
-        TestEntity entity = testRepository.findById(id);
+        User entity = testRepository.findById(id);
         testRepository.delete(entity);
         return true;
     }
@@ -49,7 +48,7 @@ public class TestService {
      * DB Select, 리스트 조회 시
      * @return
      */
-    public List<TestEntity> getList(){
+    public List<User> getList(){
         return testRepository.getTestEntityList();
     }
 
@@ -57,7 +56,7 @@ public class TestService {
      * DB Select, 하나의 아이템 조회 시
      * @return
      */
-    public TestEntity getDetail(long id){
+    public User getDetail(long id){
         return testRepository.findById(id);
     }
 }
