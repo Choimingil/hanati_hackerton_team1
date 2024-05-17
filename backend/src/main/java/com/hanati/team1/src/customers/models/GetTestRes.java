@@ -1,4 +1,4 @@
-package com.hanati.team1.src.domain1.models;
+package com.hanati.team1.src.customers.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
