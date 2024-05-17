@@ -25,10 +25,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	// JDBC
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	// DATABASE
+	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	// JPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
