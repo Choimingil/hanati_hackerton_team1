@@ -20,7 +20,7 @@ public class TestService {
     @Transactional
     public long create(){
         User entity = testRepository.save(new User());
-        return entity.getId();
+        return entity.getUserId();
     }
 
     /**
@@ -28,9 +28,8 @@ public class TestService {
      */
     @Transactional
     public boolean update(PostTestReq req, long id){
-        User entity = testRepository.findById(id);
-        entity.setEmail(req.getEmail());
-        entity.setPassword(req.getPassword());
+        User entity = testRepository.findByUserId(id);
+        entity.setUserName(req.getUserName());
         return true;
     }
 
@@ -39,7 +38,7 @@ public class TestService {
      */
     @Transactional
     public boolean delete(long id){
-        User entity = testRepository.findById(id);
+        User entity = testRepository.findByUserId(id);
         testRepository.delete(entity);
         return true;
     }
@@ -57,6 +56,6 @@ public class TestService {
      * @return
      */
     public User getDetail(long id){
-        return testRepository.findById(id);
+        return testRepository.findByUserId(id);
     }
 }

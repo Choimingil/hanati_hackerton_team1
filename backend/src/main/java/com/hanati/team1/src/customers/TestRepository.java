@@ -14,11 +14,11 @@ import java.util.List;
  * 커스텀 쿼리 : @Query 어노테이션 사용
  */
 public interface TestRepository extends JpaRepository<User, Long> {
-    User findById(long id);
+    User findByUserId(long id);
 
     List<User> findByStatus(String status);
     List<User> findByStatusAndNicknameIsContaining(String status, String word);
 
-    @Query("SELECT t FROM Test t")
+    @Query("SELECT u FROM User u")
     List<User> getTestEntityList();
 }

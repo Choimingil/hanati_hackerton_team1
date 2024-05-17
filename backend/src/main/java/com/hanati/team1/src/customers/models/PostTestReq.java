@@ -7,6 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 public class PostTestReq {
-    private String email;
-    private String password;
+    private String userName;
 }
