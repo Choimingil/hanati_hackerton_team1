@@ -1,8 +1,8 @@
-package com.hanati.team1.src.domain1;
+package com.hanati.team1.src.customers;
 
 import com.hanati.team1.bases.BaseResponse;
-import com.hanati.team1.src.domain1.entities.TestEntity;
-import com.hanati.team1.src.domain1.models.PostTestReq;
+import com.hanati.team1.src.customers.entities.User;
+import com.hanati.team1.src.customers.models.PostTestReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,7 +61,7 @@ public class TestController {
      * @return
      */
     @GetMapping("/{domain_name}")
-    public BaseResponse<List<TestEntity>> getListTest(){
+    public BaseResponse<List<User>> getListTest(){
         // params type 및 return type에 맞게 수정하여 사용
         return new BaseResponse<>(SUCCESS_READ_USERS,testService.getList());
     }
@@ -71,7 +71,7 @@ public class TestController {
      * @return
      */
     @GetMapping("/{domain_name}")
-    public BaseResponse<TestEntity> getDetailTest(@RequestParam(name="id",required = true) long id){
+    public BaseResponse<User> getDetailTest(@RequestParam(name="id",required = true) long id){
         // params type 및 return type에 맞게 수정하여 사용
         return new BaseResponse<>(SUCCESS_READ_USER,testService.getDetail(id));
     }
