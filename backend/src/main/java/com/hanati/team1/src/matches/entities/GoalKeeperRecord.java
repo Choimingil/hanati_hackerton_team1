@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name="GoalKeeperRecord")
-@ToString
 @Getter
 @Setter
 public class GoalKeeperRecord {

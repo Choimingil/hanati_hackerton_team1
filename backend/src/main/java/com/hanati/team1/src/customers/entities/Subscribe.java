@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Subscribe")
-@ToString
 @Getter
 @Setter
 public class Subscribe {

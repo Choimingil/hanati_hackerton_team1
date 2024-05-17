@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name="Match")
-@ToString
 @Getter
 @Setter
 public class Match {
