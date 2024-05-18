@@ -62,4 +62,12 @@ public class ProspectService {
 			.build();
 		subscribeRepository.save(subscribe);
 	}
+
+	@Transactional
+	public void deleteSubscribe(long prospectId) {
+		long userId = 1L;
+		Subscribe subscribe = subscribeRepository.findByPlayerIdAndUserId(prospectId, userId)
+			.orElseThrow(() -> new IllegalArgumentException("잘못된 요청입니다."));
+		subscribe.cancelSubscribe();
+	}
 }
