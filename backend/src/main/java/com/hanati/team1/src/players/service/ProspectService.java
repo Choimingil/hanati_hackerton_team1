@@ -25,7 +25,8 @@ public class ProspectService {
 	}
 
 	public GetProspectDetailRes getProspectDetail(long prospectId) {
-		return playerRepository.findProspectById(prospectId)
+		long userId = 1L;
+		return playerRepository.findProspectById(prospectId, userId)
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유망주입니다."));
 	}
 }

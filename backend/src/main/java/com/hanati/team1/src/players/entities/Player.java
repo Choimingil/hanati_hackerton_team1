@@ -58,4 +58,7 @@ public class Player {
 
     @Column(name="player_video")
     private String playerVideo;
+
+	@Column(name = "player_youth")
+	private String playerYouth;
 }
