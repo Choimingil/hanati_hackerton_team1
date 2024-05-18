@@ -1,12 +1,17 @@
 package com.hanati.team1.src.players.entities;
 
-import com.hanati.team1.src.customers.entities.User;
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Player")
@@ -47,6 +52,9 @@ public class Player {
 
     @Column(name="player_advantage")
     private String playerAdvantage;
+
+    @Column(name = "player_profile")
+    private String playerProfile;
 
     @Column(name="player_video")
     private String playerVideo;
