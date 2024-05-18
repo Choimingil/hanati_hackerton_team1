@@ -3,6 +3,7 @@ package com.hanati.team1.src.players.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.hanati.team1.src.players.models.GetProspectRes;
 import com.hanati.team1.src.players.repository.PlayerRepository;
@@ -15,7 +16,10 @@ public class ProspectService {
 
 	private final PlayerRepository playerRepository;
 
-	public List<GetProspectRes> getProspectList() {
-		return playerRepository.findAllProspects();
+	public List<GetProspectRes> getProspectList(String keyword) {
+		if (!StringUtils.hasText(keyword)) {
+			keyword = "";
+		}
+		return playerRepository.findAllProspects(keyword);
 	}
 }

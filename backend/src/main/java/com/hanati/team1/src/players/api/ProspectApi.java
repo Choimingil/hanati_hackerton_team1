@@ -22,7 +22,7 @@ public class ProspectApi {
 
 	@GetMapping
 	public Map<String, List<GetProspectRes>> getProspectList(@RequestParam("keyword") String keyword) {
-		List<GetProspectRes> resList = prospectService.getProspectList();
+		List<GetProspectRes> resList = prospectService.getProspectList(keyword);
 		return Map.of("data", resList);
 	}
 }
