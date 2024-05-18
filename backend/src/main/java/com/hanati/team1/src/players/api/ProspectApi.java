@@ -3,6 +3,7 @@ package com.hanati.team1.src.players.api;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +45,10 @@ public class ProspectApi {
 	@PostMapping("/{prospect_id}/subscribe")
 	public void saveSubscribe(@PathVariable("prospect_id") long prospectId) {
 		prospectService.saveSubscribe(prospectId);
+	}
+
+	@DeleteMapping("/{prospect_id}/subscribe")
+	public void deleteSubscribe(@PathVariable("prospect_id") long prospectId) {
+		prospectService.deleteSubscribe(prospectId);
 	}
 }
