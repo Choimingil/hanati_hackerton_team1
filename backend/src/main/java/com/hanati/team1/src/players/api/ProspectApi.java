@@ -5,12 +5,14 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hanati.team1.src.players.models.GetProspectDetailRes;
 import com.hanati.team1.src.players.models.GetProspectRes;
+import com.hanati.team1.src.players.models.PostProspectReq;
 import com.hanati.team1.src.players.service.ProspectService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,5 +34,10 @@ public class ProspectApi {
 	@GetMapping("/{prospect_id}")
 	public GetProspectDetailRes getProspectDetail(@PathVariable("prospect_id") long prospectId) {
 		return prospectService.getProspectDetail(prospectId);
+	}
+
+	@PostMapping
+	public void saveProspect(PostProspectReq postProspectReq) {
+		prospectService.saveProspect(postProspectReq);
 	}
 }
