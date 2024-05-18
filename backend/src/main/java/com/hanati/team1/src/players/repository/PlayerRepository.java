@@ -1,11 +1,13 @@
 package com.hanati.team1.src.players.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.hanati.team1.src.players.entities.Player;
+import com.hanati.team1.src.players.models.GetProspectDetailRes;
 import com.hanati.team1.src.players.models.GetProspectRes;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
@@ -15,4 +17,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 			+ "inner join Position po on po.playerId = p.playerId and po.positionLevel = 100 "
 			+ "where p.playerName like concat('%', :keyword, '%') and p.playerStatus = 200")
 	List<GetProspectRes> findAllProspects(String keyword);
+
+	@Query("")
+	Optional<GetProspectDetailRes> findProspectById(long prospectId);
 }
