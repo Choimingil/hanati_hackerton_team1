@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.hanati.team1.src.players.entities.Player;
 import com.hanati.team1.src.players.models.GetProspectDetailRes;
@@ -34,12 +33,8 @@ public class ProspectService {
 	}
 
 	public void saveProspect(PostProspectReq postProspectReq) {
+		// TODO: profile, video 쪽 S3에 미리 넣어둔 파일저장경로 url 고정으로 박아두기
 		Player player = postProspectReq.toEntity("temp", "temp");
 		playerRepository.save(player);
-	}
-
-	private String saveFile(MultipartFile file) {
-		// file save logic
-		return "path";
 	}
 }
