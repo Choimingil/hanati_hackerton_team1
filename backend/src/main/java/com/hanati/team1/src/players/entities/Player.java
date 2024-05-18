@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -61,4 +62,26 @@ public class Player {
 
 	@Column(name = "player_youth")
 	private String playerYouth;
+
+    @Builder
+    public Player(String playerName, String playerNation, LocalDateTime playerBirth, int playerHeight,
+        int playerWeight,
+        int playerStatus, String playerVision, String playerEffort, String playerAdvantage, String playerProfile,
+        String playerVideo, String playerYouth) {
+        this.playerName = playerName;
+        this.playerNation = playerNation;
+        this.playerBirth = playerBirth;
+        this.playerHeight = playerHeight;
+        this.playerWeight = playerWeight;
+        this.playerStatus = playerStatus;
+        this.playerVision = playerVision;
+        this.playerEffort = playerEffort;
+        this.playerAdvantage = playerAdvantage;
+        this.playerProfile = playerProfile;
+        this.playerVideo = playerVideo;
+        this.playerYouth = playerYouth;
+    }
+
+    public Player() {
+    }
 }
