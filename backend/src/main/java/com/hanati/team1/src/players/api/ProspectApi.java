@@ -40,4 +40,9 @@ public class ProspectApi {
 	public void saveProspect(PostProspectReq postProspectReq) {
 		prospectService.saveProspect(postProspectReq);
 	}
+
+	@PostMapping("/{prospect_id}/subscribe")
+	public void saveSubscribe(@PathVariable("prospect_id") long prospectId) {
+		prospectService.saveSubscribe(prospectId);
+	}
 }
