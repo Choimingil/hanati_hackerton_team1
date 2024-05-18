@@ -10,11 +10,9 @@ import com.hanati.team1.src.players.models.GetProspectRes;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {
 	@Query(
-		"select new com.hanati.team1.src.players.models.GetProspectRes(p.playerId, p.playerName, count(s.subscribeId), p.playerProfile, po.positionName) "
+		"select new com.hanati.team1.src.players.models.GetProspectRes(p.playerId, p.playerName, (select count(s.subscribeId) from Subscribe s where s.playerId = p.playerId and s.subscribeStatus = 100), p.playerProfile, po.positionName) "
 			+ "from Player p "
 			+ "inner join Position po on po.playerId = p.playerId and po.positionLevel = 100 "
-			+ "left join Subscribe s on s.player.playerId = p.playerId "
-			+ "where p.playerName like concat('%', :keyword, '%') "
-			+ "group by p.playerId")
+			+ "where p.playerName like concat('%', :keyword, '%') and p.playerStatus = 200")
 	List<GetProspectRes> findAllProspects(String keyword);
 }

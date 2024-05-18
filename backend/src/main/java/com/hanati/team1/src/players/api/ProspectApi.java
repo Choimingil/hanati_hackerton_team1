@@ -21,7 +21,8 @@ public class ProspectApi {
 	private final ProspectService prospectService;
 
 	@GetMapping
-	public Map<String, List<GetProspectRes>> getProspectList(@RequestParam("keyword") String keyword) {
+	public Map<String, List<GetProspectRes>> getProspectList(
+		@RequestParam(value = "keyword", required = false) String keyword) {
 		List<GetProspectRes> resList = prospectService.getProspectList(keyword);
 		return Map.of("data", resList);
 	}
