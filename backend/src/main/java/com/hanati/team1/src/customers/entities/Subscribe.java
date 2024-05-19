@@ -1,16 +1,26 @@
 package com.hanati.team1.src.customers.entities;
 
+import java.time.LocalDateTime;
+
 import com.hanati.team1.src.players.entities.Player;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Subscribe")
-@ToString
 @Getter
 @Setter
 public class Subscribe {
@@ -41,4 +51,22 @@ public class Subscribe {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="subscribe_date", nullable = false, insertable = false)
     private LocalDateTime subscribeDate = LocalDateTime.now();
+
+    public Subscribe() {
+    }
+
+    @Builder
+    public Subscribe(long userId, long playerId) {
+        this.userId = userId;
+        this.playerId = playerId;
+        this.subscribeStatus = 100;
+    }
+
+    public void saveSubscribe() {
+        this.subscribeStatus = 100;
+    }
+
+    public void cancelSubscribe() {
+        this.subscribeStatus = 200;
+    }
 }

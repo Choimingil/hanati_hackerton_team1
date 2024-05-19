@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="TeamByPlayer")
-@ToString
 @Getter
 @Setter
 public class TeamByPlayer {

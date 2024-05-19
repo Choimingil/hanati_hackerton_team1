@@ -9,8 +9,7 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Match")
-@ToString
+@Table(name="MatchTbl")
 @Getter
 @Setter
 public class Match {

@@ -1,16 +1,21 @@
 package com.hanati.team1.src.players.entities;
 
-import com.hanati.team1.src.customers.entities.User;
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Player")
-@ToString
 @Getter
 @Setter
 public class Player {
@@ -49,6 +54,34 @@ public class Player {
     @Column(name="player_advantage")
     private String playerAdvantage;
 
+    @Column(name = "player_profile")
+    private String playerProfile;
+
     @Column(name="player_video")
     private String playerVideo;
+
+	@Column(name = "player_youth")
+	private String playerYouth;
+
+    @Builder
+    public Player(String playerName, String playerNation, LocalDateTime playerBirth, int playerHeight,
+        int playerWeight,
+        int playerStatus, String playerVision, String playerEffort, String playerAdvantage, String playerProfile,
+        String playerVideo, String playerYouth) {
+        this.playerName = playerName;
+        this.playerNation = playerNation;
+        this.playerBirth = playerBirth;
+        this.playerHeight = playerHeight;
+        this.playerWeight = playerWeight;
+        this.playerStatus = playerStatus;
+        this.playerVision = playerVision;
+        this.playerEffort = playerEffort;
+        this.playerAdvantage = playerAdvantage;
+        this.playerProfile = playerProfile;
+        this.playerVideo = playerVideo;
+        this.playerYouth = playerYouth;
+    }
+
+    public Player() {
+    }
 }

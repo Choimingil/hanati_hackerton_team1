@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name="Position")
-@ToString
 @Getter
 @Setter
 public class Position {

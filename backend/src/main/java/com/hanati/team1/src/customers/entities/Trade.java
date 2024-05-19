@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Trade")
-@ToString
 @Getter
 @Setter
 public class Trade {
