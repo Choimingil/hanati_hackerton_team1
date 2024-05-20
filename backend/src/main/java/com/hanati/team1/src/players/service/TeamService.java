@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.hanati.team1.src.players.models.GetPlayerListRes;
 import com.hanati.team1.src.players.models.GetTeamListRes;
 import com.hanati.team1.src.players.repository.TeamRepository;
 
@@ -23,5 +24,9 @@ public class TeamService {
 			keyword = "";
 		}
 		return teamRepository.findAllTeams(keyword);
+	}
+
+	public List<GetPlayerListRes> getPlayerList(long teamId) {
+		return teamRepository.findAllPlayers(teamId);
 	}
 }
