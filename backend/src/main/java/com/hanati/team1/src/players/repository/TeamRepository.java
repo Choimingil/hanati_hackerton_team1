@@ -16,12 +16,11 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
 	List<GetTeamListRes> findAllTeams(String keyword);
 
 	@Query(
-		"select new com.hanati.team1.src.players.models.GetPlayerListRes(p.playerId, tb.playerBacknum, p.playerName, pp.positionName, tt.tokenPrice, 'profile') "
+		"select new com.hanati.team1.src.players.models.GetPlayerListRes(p.playerId, tb.playerBacknum, p.playerName, pp.positionName, (select tt.tokenPrice from Trade tt where tt.playerId = p.playerId order by tt.tradeDate desc limit 1), 'profile') "
 			+ "from Player p "
 			+ "inner join TeamByPlayer tb on tb.playerId = p.playerId and tb.endDate >= now() "
 			+ "inner join Team t on t.teamId = tb.teamId "
 			+ "inner join Position pp on pp.playerId = p.playerId "
-			+ "inner join Trade tt on tt.playerId = p.playerId "
 			+ "where t.teamId = :teamId")
 	List<GetPlayerListRes> findAllPlayers(long teamId);
 }
