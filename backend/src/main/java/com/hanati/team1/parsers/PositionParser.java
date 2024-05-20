@@ -1,6 +1,8 @@
 package com.hanati.team1.parsers;
 
 import com.hanati.team1.src.players.entities.Position;
+import com.hanati.team1.src.players.repository.PositionRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
