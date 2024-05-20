@@ -9,6 +9,7 @@ import com.hanati.team1.src.players.entities.Team;
 import com.hanati.team1.src.players.models.GetTeamListRes;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
-	@Query("")
+	@Query("select new com.hanati.team1.src.players.models.GetTeamListRes(t.teamId, t.teamName) "
+		+ "from Team t")
 	List<GetTeamListRes> findAllTeams(String keyword);
 }
