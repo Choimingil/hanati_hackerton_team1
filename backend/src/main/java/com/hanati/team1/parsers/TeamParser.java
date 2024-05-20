@@ -1,6 +1,8 @@
 package com.hanati.team1.parsers;
 
 import com.hanati.team1.src.players.entities.Team;
+import com.hanati.team1.src.players.repository.TeamRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
