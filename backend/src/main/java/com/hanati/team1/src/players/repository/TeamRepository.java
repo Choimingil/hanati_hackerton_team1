@@ -10,6 +10,7 @@ import com.hanati.team1.src.players.models.GetTeamListRes;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
 	@Query("select new com.hanati.team1.src.players.models.GetTeamListRes(t.teamId, t.teamName) "
-		+ "from Team t")
+		+ "from Team t "
+		+ "where t.teamName like concat('%', :keyword, '%')")
 	List<GetTeamListRes> findAllTeams(String keyword);
 }
