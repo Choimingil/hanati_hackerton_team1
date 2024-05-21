@@ -40,8 +40,7 @@ public class ProspectService {
 
 	@Transactional
 	public void saveProspect(PostProspectReq postProspectReq) {
-		// TODO: profile, video 쪽 S3에 미리 넣어둔 파일저장경로 url 고정으로 박아두기
-		Player player = postProspectReq.toEntity("temp", "temp");
+		Player player = postProspectReq.toEntity();
 		playerRepository.save(player);
 	}
 

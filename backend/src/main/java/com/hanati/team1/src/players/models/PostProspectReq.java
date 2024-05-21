@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hanati.team1.src.players.entities.Player;
 
 public record PostProspectReq(
-	MultipartFile profile,
+	String profile,
 	String name,
 	LocalDateTime birthDate,
 	String nation,
@@ -16,23 +16,23 @@ public record PostProspectReq(
 	String vision,
 	String effort,
 	String advantage,
-	MultipartFile video,
+	String video,
 	String youth
 ) {
-	public Player toEntity(String profile, String video) {
+	public Player toEntity() {
 		return Player.builder()
-			.playerName(this.name())
-			.playerNation(this.nation())
-			.playerBirth(this.birthDate())
-			.playerHeight(this.height())
-			.playerWeight(this.weight())
+			.playerName(this.name)
+			.playerNation(this.nation)
+			.playerBirth(this.birthDate)
+			.playerHeight(this.height)
+			.playerWeight(this.weight)
 			.playerStatus(200)
-			.playerVision(this.vision())
-			.playerEffort(this.effort())
-			.playerAdvantage(this.advantage())
-			.playerProfile(profile)
-			.playerVideo(video)
-			.playerYouth(this.youth())
+			.playerVision(this.vision)
+			.playerEffort(this.effort)
+			.playerAdvantage(this.advantage)
+			.playerProfile(this.profile)
+			.playerVideo(this.video)
+			.playerYouth(this.youth)
 			.build();
 	}
 }
