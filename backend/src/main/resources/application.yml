@@ -13,4 +13,4 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
   mvc:
-    static-path-pattern: /statics/**
+    static-path-pattern: /images/**
