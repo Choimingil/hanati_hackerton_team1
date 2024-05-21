@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.hanati.team1.src.players.entities.Player;
+import com.hanati.team1.src.players.models.GetPlayerDetailRes;
 import com.hanati.team1.src.players.models.GetProspectDetailRes;
 import com.hanati.team1.src.players.models.GetProspectRes;
 
@@ -24,4 +25,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 			+ "inner join Position po on po.playerId = p.playerId and po.positionLevel = 100 "
 			+ "where p.playerId = :prospectId")
 	Optional<GetProspectDetailRes> findProspectById(long prospectId, long userId);
+
+	@Query("")
+	Optional<GetPlayerDetailRes> findPlayerById(long playerId);
 }
