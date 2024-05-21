@@ -13,7 +13,9 @@ public class FieldPlayerRecordParser implements Parsable {
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(fieldPlayerRecordRepository,
+        baseParser.parse(
+                "FieldPlayerRecord.csv",
+                fieldPlayerRecordRepository,
                 (csvRecord, list) -> {
                     FieldPlayerRecord record = new FieldPlayerRecord();
                     record.setRecordId(Long.parseLong(csvRecord.get(0)));

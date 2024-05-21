@@ -2,6 +2,7 @@ package com.hanati.team1.src.customers.entities;
 
 import com.hanati.team1.src.players.entities.Player;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="trade_id", nullable = false, insertable = false, updatable = false)
+    @Column(name="trade_id", nullable = false)
     private long tradeId;
 
     @Column(name="user_id", nullable = false)
@@ -39,6 +40,17 @@ public class Trade {
     private int tokenNum;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="trade_date", nullable = false, insertable = false, updatable = false)
+    @Column(name="trade_date", nullable = false)
     private LocalDateTime tradeDate = LocalDateTime.now();
+
+    @Builder
+    public Trade(long userId, long playerId, long tokenPrice, int tokenNum, LocalDateTime tradeDate) {
+        this.userId = userId;
+        this.playerId = playerId;
+        this.tokenPrice = tokenPrice;
+        this.tokenNum = tokenNum;
+        this.tradeDate = tradeDate;
+    }
+
+    public Trade() {}
 }

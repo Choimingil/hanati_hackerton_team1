@@ -13,7 +13,9 @@ public class SubscribeParser implements Parsable{
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(subscribeRepository,
+        baseParser.parse(
+                "Subscribe.csv",
+                subscribeRepository,
                 (csvRecord, list) -> {
                     Subscribe subscribe = new Subscribe();
                     subscribe.setSubscribeId(Long.parseLong(csvRecord.get(0)));
