@@ -15,8 +15,11 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Carousel from "../components/Carousel";
 import UnderBar from "../components/UnderBar";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigation = useNavigate();
+
   return (
     <>
       <Head>
@@ -25,7 +28,7 @@ function Main() {
         <SearchBar />
       </Head>
       <TeamWrapper>
-        <TeamDiv teamLogo={hanaAmblem} teamName="대전하나시티즌" />
+        <TeamDiv teamLogo={hanaAmblem} teamName="대전하나시티즌" onClick={() => navigation("/proList")} />
         <TeamDiv teamLogo={seoulAmblem} teamName="FC서울" />
         <TeamDiv teamLogo={jeonbukAmblem} teamName="전북 현대 모터스" />
         <TeamDiv teamLogo={gangwonAmblem} teamName="강원 FC" />
@@ -44,7 +47,7 @@ export default Main;
 const TeamWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height:450px;
+  height: 450px;
   padding: 0px 10px 10px 10px;
   gap: 3px;
   background-color: white;
