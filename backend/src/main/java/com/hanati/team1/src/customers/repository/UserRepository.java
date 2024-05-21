@@ -17,7 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			+ "where u.userId = :userId")
 	Optional<GetMyInfoRes> findMyInfo(long userId);
 
-	@Query("select new com.hanati.team1.src.customers.models.GetTokenRes(p.playerId, p.playerName, t.tokenPrice * count(t.tradeId), pp.positionName) "
+	@Query(
+		"select new com.hanati.team1.src.customers.models.GetTokenRes(p.playerId, p.playerName, abs(t.tokenPrice * sum (t.tokenNum)) , pp.positionName) "
 		+ "from User u "
 		+ "inner join Trade t on t.userId = u.userId "
 		+ "inner join Player p on p.playerId = t.playerId "
