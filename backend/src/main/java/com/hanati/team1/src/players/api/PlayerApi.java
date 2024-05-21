@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hanati.team1.src.players.models.GetPlayerDetailRes;
 import com.hanati.team1.src.players.models.PostTokenBuyReq;
+import com.hanati.team1.src.players.models.PostTokenSellReq;
 import com.hanati.team1.src.players.service.PlayerService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,11 @@ public class PlayerApi {
 	public void buyTokens(@PathVariable("player_id") long playerId, @RequestBody PostTokenBuyReq postTokenBuyReq) {
 		long userId = 1L;
 		playerService.buyTokens(userId, playerId, postTokenBuyReq);
+	}
+
+	@PostMapping("/{player_id}/sell")
+	public void sellTokens(@PathVariable("player_id") long playerId, @RequestBody PostTokenSellReq postTokenSellReq) {
+		long userId = 1L;
+		playerService.sellTokens(userId, playerId, postTokenSellReq);
 	}
 }

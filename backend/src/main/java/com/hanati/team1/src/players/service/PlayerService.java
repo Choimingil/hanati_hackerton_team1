@@ -7,6 +7,7 @@ import com.hanati.team1.src.customers.entities.Trade;
 import com.hanati.team1.src.customers.repository.TradeRepository;
 import com.hanati.team1.src.players.models.GetPlayerDetailRes;
 import com.hanati.team1.src.players.models.PostTokenBuyReq;
+import com.hanati.team1.src.players.models.PostTokenSellReq;
 import com.hanati.team1.src.players.repository.PlayerRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,12 @@ public class PlayerService {
 	@Transactional
 	public void buyTokens(long userId, long playerId, PostTokenBuyReq postTokenBuyReq) {
 		Trade trade = postTokenBuyReq.toEntity(userId, playerId);
+		tradeRepository.save(trade);
+	}
+
+	@Transactional
+	public void sellTokens(long userId, long playerId, PostTokenSellReq postTokenSellReq) {
+		Trade trade = postTokenSellReq.toEntity(userId, playerId);
 		tradeRepository.save(trade);
 	}
 }
