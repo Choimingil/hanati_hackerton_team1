@@ -13,7 +13,9 @@ public class UserParser implements Parsable{
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(userRepository,
+        baseParser.parse(
+                "User.csv",
+                userRepository,
                 (csvRecord, list) -> {
                     User user = new User();
                     user.setUserId(Long.parseLong(csvRecord.get(0)));

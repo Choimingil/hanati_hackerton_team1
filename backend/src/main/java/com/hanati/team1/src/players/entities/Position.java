@@ -12,7 +12,7 @@ import lombok.ToString;
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="position_id", nullable = false, insertable = false, updatable = false)
+    @Column(name="position_id", nullable = false)
     private long positionId;
 
     @Column(name="player_id", nullable = false)

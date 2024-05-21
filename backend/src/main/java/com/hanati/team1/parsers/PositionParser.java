@@ -14,7 +14,9 @@ public class PositionParser implements Parsable{
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(positionRepository,
+        baseParser.parse(
+                "Position.csv",
+                positionRepository,
                 (csvRecord, list) -> {
                     Position position = new Position();
                     position.setPositionId(Long.parseLong(csvRecord.get(0)));

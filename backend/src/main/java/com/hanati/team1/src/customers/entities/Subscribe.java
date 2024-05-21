@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Subscribe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="subscribe_id", nullable = false, insertable = false, updatable = false)
+    @Column(name="subscribe_id", nullable = false)
     private long subscribeId;
 
     @Column(name="user_id", nullable = false)
@@ -49,7 +49,7 @@ public class Subscribe {
     private int subscribeStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="subscribe_date", nullable = false, insertable = false)
+    @Column(name="subscribe_date", nullable = false)
     private LocalDateTime subscribeDate = LocalDateTime.now();
 
     public Subscribe() {
