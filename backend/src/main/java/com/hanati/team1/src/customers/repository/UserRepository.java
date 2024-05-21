@@ -9,13 +9,14 @@ import org.springframework.data.jpa.repository.Query;
 import com.hanati.team1.src.customers.entities.User;
 import com.hanati.team1.src.customers.models.GetMyInfoRes;
 import com.hanati.team1.src.customers.models.GetTokenRes;
+import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	@Query(
 		"select new com.hanati.team1.src.customers.models.GetMyInfoRes(u.userName, u.userProfile, (select sum(t.tokenPrice) from Trade t where t.userId = u.userId), (select sum(t.tokenNum) from Trade t where t.userId = u.userId)) "
 			+ "from User u "
 			+ "where u.userId = :userId")
-	Optional<GetMyInfoRes> findMyInfo(long userId);
+	Optional<GetMyInfoRes> findMyInfo(@Param("userId") long userId);
 
 	@Query(
 		"select new com.hanati.team1.src.customers.models.GetTokenRes(p.playerId, p.playerName, abs(t.tokenPrice * sum (t.tokenNum)) , pp.positionName) "
@@ -25,5 +26,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 		+ "inner join Position pp on pp.playerId = p.playerId "
 		+ "where u.userId = :userId "
 		+ "group by p.playerId")
-	List<GetTokenRes> findMyTokenList(long userId);
+	List<GetTokenRes> findMyTokenList(@Param("userId") long userId);
 }
