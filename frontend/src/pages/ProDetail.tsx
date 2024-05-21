@@ -8,7 +8,7 @@ import UnderBar from "../components/UnderBar";
 import OrderModal from "../components/OrderModal";
 
 function ProDetail() {
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
     {modalOpen && <OrderModal modalOpen={setModalOpen}/>}
