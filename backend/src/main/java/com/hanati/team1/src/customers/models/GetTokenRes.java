@@ -6,4 +6,5 @@ public record GetTokenRes(
 	long price,
 	String position
 ) {
+
 }
