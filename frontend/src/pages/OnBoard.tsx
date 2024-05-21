@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 function OnBoard() {
+  const navigation = useNavigate();
+  useEffect(() => {
+    setTimeout(() => navigation("/main"), 3000);
+  });
   return (
     <Wrapper>
       <img src={Logo} alt="load-logo" />
