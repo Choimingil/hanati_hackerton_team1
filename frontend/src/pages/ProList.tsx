@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProUserBox from "../components/ProUserBox";
 import Header from "../components/Header";
 import Amblem from "../images/amblem/hana_citizen_amblem.png";
 import UnderBar from "../components/UnderBar";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const tempData = [
   {
@@ -67,6 +68,24 @@ const tempData = [
 
 function ProList() {
   const navigation = useNavigate();
+  // axios.get('http://localhost:8080/teams/1').
+  //   then(function (response) {
+  //     console.log(response.data);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+
+
+  const [users, setUsers] = useState(null);
+  useEffect(() => {
+    axios.get('http://localhost:8080/teams/1')
+      .then(response => {
+        setUsers(response.data);
+      });
+  });
+  console.log(users);
+
   return (
     <>
       <Header title="선수목록" />
