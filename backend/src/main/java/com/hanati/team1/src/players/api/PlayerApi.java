@@ -1,5 +1,6 @@
 package com.hanati.team1.src.players.api;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.hanati.team1.src.players.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@CrossOrigin("*")
 @RequestMapping("/players")
 @RestController
 public class PlayerApi {

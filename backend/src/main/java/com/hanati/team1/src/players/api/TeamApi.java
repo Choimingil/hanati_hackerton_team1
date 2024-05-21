@@ -3,6 +3,7 @@ package com.hanati.team1.src.players.api;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.hanati.team1.src.players.service.TeamService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@CrossOrigin("*")
 @RequestMapping("/teams")
 @RestController
 public class TeamApi {
