@@ -24,18 +24,18 @@ public class CsvParserAdapter implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-//        userParser.parse();
-//
-//        playerParser.parse();
-//        positionParser.parse();
-//        teamParser.parse();
-//        teamByPlayerParser.parse();
-//
-//        matchParser.parse();
-//        fieldPlayerRecordParser.parse();
-//        goalKeeperRecordParser.parse();
-//
-//        tradeParser.parse();
-//        subscribeParser.parse();
+        userParser.parse();
+
+        playerParser.parse();
+        positionParser.parse();
+        teamParser.parse();
+        teamByPlayerParser.parse();
+
+        matchParser.parse();
+        fieldPlayerRecordParser.parse();
+        goalKeeperRecordParser.parse();
+
+        tradeParser.parse();
+        subscribeParser.parse();
     }
 }
