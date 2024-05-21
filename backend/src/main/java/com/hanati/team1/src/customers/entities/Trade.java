@@ -42,4 +42,15 @@ public class Trade {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="trade_date", nullable = false)
     private LocalDateTime tradeDate = LocalDateTime.now();
+
+    @Builder
+    public Trade(long userId, long playerId, long tokenPrice, int tokenNum, LocalDateTime tradeDate) {
+        this.userId = userId;
+        this.playerId = playerId;
+        this.tokenPrice = tokenPrice;
+        this.tokenNum = tokenNum;
+        this.tradeDate = tradeDate;
+    }
+
+    public Trade() {}
 }
