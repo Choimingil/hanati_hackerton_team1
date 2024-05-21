@@ -13,7 +13,7 @@ public record PostTokenBuyReq(
 		return Trade.builder()
 			.userId(userId)
 			.playerId(playerId)
-			.tokenPrice(this.tokenPrice)
+			.tokenPrice(-this.tokenPrice)
 			.tokenNum(this.tokenCount)
 			.tradeDate(this.tradeDate)
 			.build();
