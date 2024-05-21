@@ -14,7 +14,9 @@ public class TeamParser implements Parsable{
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(teamRepository,
+        baseParser.parse(
+                "Team.csv",
+                teamRepository,
                 (csvRecord, list) -> {
                     Team team = new Team();
                     team.setTeamId(Long.parseLong(csvRecord.get(0)));

@@ -13,7 +13,9 @@ public class PlayerParser implements Parsable{
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(playerRepository,
+        baseParser.parse(
+                "Player.csv",
+                playerRepository,
                 (csvRecord, list) -> {
                     Player player = new Player();
                     player.setPlayerId(Long.parseLong(csvRecord.get(0)));
@@ -26,10 +28,17 @@ public class PlayerParser implements Parsable{
                     player.setPlayerYouth(csvRecord.get(7));
                     player.setPlayerStatus(Integer.parseInt(csvRecord.get(8)));
 
-                    player.setPlayerVision(csvRecord.get(9));
-                    player.setPlayerEffort(csvRecord.get(10));
-                    player.setPlayerAdvantage(csvRecord.get(11));
-                    player.setPlayerVideo(csvRecord.get(12));
+                    String playerVision = csvRecord.get(9);
+                    if(!playerVision.equals("null")) player.setPlayerVision(playerVision);
+
+                    String playerEffort = csvRecord.get(10);
+                    if(!playerEffort.equals("null")) player.setPlayerEffort(playerEffort);
+
+                    String playerAdvantage = csvRecord.get(11);
+                    if(!playerAdvantage.equals("null")) player.setPlayerAdvantage(playerAdvantage);
+
+                    String playerVideo = csvRecord.get(12);
+                    if(!playerVideo.equals("null")) player.setPlayerVideo(playerVideo);
 
                     list.add(player);
                 }

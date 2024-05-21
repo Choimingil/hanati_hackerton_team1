@@ -15,7 +15,9 @@ public class MatchParser implements Parsable {
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(matchRepository,
+        baseParser.parse(
+                "Match.csv",
+                matchRepository,
                 (csvRecord, list) -> {
                     Match match = new Match();
                     match.setMatchId(Long.parseLong(csvRecord.get(0)));

@@ -13,7 +13,9 @@ public class GoalKeeperRecordParser implements Parsable {
 
     @Override
     public void parse() throws Exception {
-        baseParser.parse(goalKeeperRecordRepository,
+        baseParser.parse(
+                "GoalKeeperRecord.csv",
+                goalKeeperRecordRepository,
                 (csvRecord, list) -> {
                     GoalKeeperRecord record = new GoalKeeperRecord();
                     record.setRecordId(Long.parseLong(csvRecord.get(0)));

@@ -18,9 +18,9 @@ import java.util.function.BiConsumer;
 @RequiredArgsConstructor
 public class BaseParser {
 
-    public <T> void parse(JpaRepository<T, Long> repository, BiConsumer<CSVRecord,List<T>> consumer) throws IOException {
+    public <T> void parse(String csvName, JpaRepository<T, Long> repository, BiConsumer<CSVRecord,List<T>> consumer) throws IOException {
         String csvPath = "src/main/resources/data/";
-        try (Reader reader = new FileReader(csvPath);
+        try (Reader reader = new FileReader(csvPath+csvName);
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
             List<T> list = new ArrayList<>();
 
