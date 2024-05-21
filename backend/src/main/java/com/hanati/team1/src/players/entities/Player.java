@@ -40,6 +40,12 @@ public class Player {
     @Column(name="player_weight", nullable = false)
     private int playerWeight;
 
+    @Column(name="player_profile", nullable = false)
+    private String playerProfile;
+
+    @Column(name = "player_youth", nullable = false)
+    private String playerYouth;
+
     // 100 : 프로
     // 200 : 유망주
     @Column(name="player_status", nullable = false)
@@ -54,14 +60,8 @@ public class Player {
     @Column(name="player_advantage")
     private String playerAdvantage;
 
-    @Column(name = "player_profile")
-    private String playerProfile;
-
     @Column(name="player_video")
     private String playerVideo;
-
-	@Column(name = "player_youth")
-	private String playerYouth;
 
     @Builder
     public Player(String playerName, String playerNation, LocalDateTime playerBirth, int playerHeight,
