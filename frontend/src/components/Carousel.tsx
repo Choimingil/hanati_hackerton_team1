@@ -1,11 +1,10 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import image_1 from "../images/carousel/carousel_1.png";
-import image_2 from "../images/carousel/carousel_2.png";
-import image_3 from "../images/carousel/carousel_3.jpeg";
-import image_4 from "../images/carousel/carousel_4.jpeg";
-import styled from "styled-components";
+import image_1 from "../f_images/carousel/carousel_1.png";
+import image_2 from "../f_images/carousel/carousel_2.png";
+import image_3 from "../f_images/carousel/carousel_3.jpeg";
+import image_4 from "../f_images/carousel/carousel_4.jpeg";
 
 export default function Carousel() {
   var settings = {

@@ -4,11 +4,12 @@ import styled from "styled-components";
 interface TeamDivProps {
   teamName: string;
   teamLogo: string;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-function TeamDiv({ teamName, teamLogo }: TeamDivProps) {
+function TeamDiv({ teamName, teamLogo, onClick }: TeamDivProps) {
   return (
-    <DivWrapper>
+    <DivWrapper onClick={onClick}>
       <img src={teamLogo} alt="team-logo" />
       <TeamNameDiv>
         <p className="hana-medium">{teamName}</p>
