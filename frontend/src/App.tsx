@@ -6,6 +6,9 @@ import Main from "./pages/Main";
 import RegistProspect from "./pages/RegistProspect";
 import ProList from "./pages/ProList";
 import ProDetail from "./pages/ProDetail";
+import ProspectList from "./pages/ProspectList";
+import ProspectDetail from "./pages/ProspectDetail";
+import Mypage from "./pages/Mypage";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Route path="/registProspect" Component={RegistProspect} />
         <Route path="/proList" Component={ProList} />
         <Route path="/proDetail/:id" Component={ProDetail} />
+        <Route path="/prospectList" Component={ProspectList} />
+        <Route path="/prospectDetail/:id" Component={ProspectDetail} />
+        <Route path="/mypage" Component={Mypage} />
       </Routes>
     </BrowserRouter>
   );

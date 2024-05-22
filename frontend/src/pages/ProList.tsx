@@ -113,7 +113,7 @@ function ProList() {
 
 export default ProList;
 
-const ListContainer = styled.div`
+export const ListContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
@@ -125,7 +125,7 @@ const ListContainer = styled.div`
   overflow: auto;
 `;
 
-const TeamTitle = styled.div`
+export const TeamTitle = styled.div`
   width: 100%;
   height: 76px;
   img {
