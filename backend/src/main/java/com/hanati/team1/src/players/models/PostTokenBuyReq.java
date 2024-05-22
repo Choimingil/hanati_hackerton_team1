@@ -6,8 +6,7 @@ import com.hanati.team1.src.customers.entities.Trade;
 
 public record PostTokenBuyReq(
 	long tokenPrice,
-	int tokenCount,
-	LocalDateTime tradeDate
+	int tokenCount
 ) {
 	public Trade toEntity(long userId, long playerId) {
 		return Trade.builder()
@@ -15,7 +14,7 @@ public record PostTokenBuyReq(
 			.playerId(playerId)
 			.tokenPrice(-this.tokenPrice)
 			.tokenNum(this.tokenCount)
-			.tradeDate(this.tradeDate)
+			.tradeDate(LocalDateTime.now())
 			.build();
 	}
 }
