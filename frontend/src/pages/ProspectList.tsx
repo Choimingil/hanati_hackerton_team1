@@ -5,6 +5,7 @@ import ProspectUserBox from "../components/ProspectUserBox";
 import CitizenTitle from "../images/citizen_title.png";
 import UnderBar from "../components/UnderBar";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -66,6 +67,7 @@ const data = [
 ];
 
 function ProspectList() {
+  const navigation = useNavigate();
   return (
     <>
       <Header title="유망주 목록" />
@@ -73,7 +75,7 @@ function ProspectList() {
 
       <ProspectListContainer>
         {data.map(dt => (
-          <ProspectUserBox id={dt.id} name={dt.name} cntSub={dt.cntSub} profile={dt.profile} position={dt.position} />
+          <ProspectUserBox id={dt.id} name={dt.name} cntSub={dt.cntSub} profile={dt.profile} position={dt.position} onClick={()=>navigation(`/prospectDetail/${dt.id}`)}/>
         ))}
       </ProspectListContainer>
       <UnderBar />

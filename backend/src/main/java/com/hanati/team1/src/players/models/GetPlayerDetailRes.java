@@ -11,6 +11,7 @@ public record GetPlayerDetailRes(
 	int height,
 	String youth,
 	boolean isGoalKeeper,
-	String position
+	String position,
+	int backNum
 ) {
 }
