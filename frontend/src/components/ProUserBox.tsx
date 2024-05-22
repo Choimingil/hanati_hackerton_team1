@@ -13,12 +13,28 @@ interface ProUserBoxProps {
 
 function ProUserBox({ id, imgUrl, name, number, price, position, onClick }: ProUserBoxProps) {
   const calcUpDown = (price: number) => {
-    if (price > 20000) {
-      return true;
+    if (price > 0) {
+      return true
     } else {
       return false;
     }
   };
+
+  const checkPrice = (price: number) => {
+    if (price < 0) {
+      return price * -1
+    } else {
+      return price;
+    }
+  }
+
+  const upDownIcon = (price: number) => {
+    if (price < 0) {
+      return '▼'
+    } else {
+      return '▲'
+    }
+  }
 
   return (
     <ProUserDiv id={String(id)} onClick={onClick}>
@@ -27,9 +43,9 @@ function ProUserBox({ id, imgUrl, name, number, price, position, onClick }: ProU
         <div>{number}</div> {position} {name}
       </NameBox>
       <PriceBox className="hana-bold">
-        <div className={calcUpDown(price) ? "price red" : "price blue"}>{price}</div>
+        <div className={calcUpDown(price) ? "price red" : "price blue"}>{checkPrice(price)}</div>
         <div className={calcUpDown(price) ? "up-down red" : "up-down blue"}>
-          <p>▲2.42</p>&nbsp;&nbsp;&nbsp;&nbsp;
+          <p>{upDownIcon(price)}2.42</p>&nbsp;&nbsp;&nbsp;&nbsp;
           <p>3.52%</p>
         </div>
       </PriceBox>
@@ -88,6 +104,7 @@ export const NameBox = styled.div`
   align-items: center;
   background-color: #008476;
   color: white;
+  font-size: 12px;
   div {
     width: 28px;
     height: 100%;

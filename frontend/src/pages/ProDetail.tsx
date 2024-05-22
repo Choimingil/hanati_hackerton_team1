@@ -84,7 +84,7 @@ function ProDetail() {
         </ChartContainer>
         <CandleContainer>
           <p className="hana-medium">
-            🚨 <b>20대</b>의 <b>32%</b>가 <b>이승현 토큰</b>을 구매했어요!{" "}
+            🚨 <b>20대</b>의 <b>32%</b>가 <b>{users.name} 토큰</b>을 구매했어요!
           </p>
           <CandleChart title={true} />
         </CandleContainer>
@@ -105,7 +105,7 @@ export default ProDetail;
 
 export const InfoBox = styled.div`
   display: flex;
-  height: 180px;
+  height: 200px;
   border-bottom: 1px solid gray;
   font-size: 0;
   gap: 0;
@@ -113,11 +113,11 @@ export const InfoBox = styled.div`
 
 export const LeftDiv = styled.div`
   width: 132px;
-  height: 180px;
+  height: 200px;
   font-size: 0;
   img {
     width: 132px;
-    height: 160px;
+    height: 170px;
   }
   div {
     text-align: center;
@@ -131,7 +131,7 @@ export const LeftDiv = styled.div`
 
 export const RightDiv = styled.div`
   width: 299px;
-  height: 180px;
+  height: 200px;
   background-color: white;
   display: grid;
   grid-template-columns: 2fr 4fr;

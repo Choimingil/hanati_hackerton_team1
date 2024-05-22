@@ -1,16 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { InfoBox, LeftDiv, RightDiv } from "./ProDetail";
 import styled from "styled-components";
 import UnderBar from "../components/UnderBar";
 import YouTube from "react-youtube";
 import SubScribeModal from "../components/SubScribeModal";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function ProspectDetail() {
   const [isSub, setIsSub] = useState(false); // 구독여부 받아서 수정
   const [modalOpen, setModalOpen] = useState(false);
+  const [userId, setUserId] = useState(0);
+  const [user, setUser] = useState({
+    profile: "",
+    name: "",
+    birthDate: new Date(),
+    nation: "",
+    weight: 0,
+    height: 0,
+    vision: "",
+    effort: "",
+    advantage: "",
+    video: "",
+    position: "",
+    isSubscribed: true,
+    youth: "",
+  });
 
-  const subMessage = isSub ? "구독취소" : "구독하기";
+  const subMessage = user.isSubscribed ? "구독취소" : "구독하기";
+  const modalMessage = user.isSubscribed ? "구독이 취소되었습니다." : "구독이 완료되었습니다.";
   const videoId = "fg_lI0UMTDs";
   const opts = {
     height: "250",
@@ -19,49 +38,79 @@ function ProspectDetail() {
       autoplay: 1,
     },
   };
+  const location = useLocation();
+  const user_id = parseInt(location.pathname.split("/")[2]);
+  useEffect(() => {
+    axios.get(`http://localhost:8080/prospects/${user_id}`).then(response => {
+      const userData = response.data;
+      userData.birthDate = new Date(userData.birthDate);
+      console.log(userData);
+      setUser(userData);
+      // setIsSub(userData.isSubscribed);
+    });
+  }, [user_id]);
+  const updateSubscribe = () => {
+    if (user.isSubscribed) {
+      //구독한 상태라면
+      axios
+        .delete(`http://localhost:8080/prospects/${user_id}/subscribe`)
+        .then(res => user.isSubscribed = !user.isSubscribed)
+        .catch(err => console.log(err));
+    } else {
+      // 아니라면
+      axios
+        .post(`http://localhost:8080/prospects/${user_id}/subscribe`)
+        .then(res => user.isSubscribed = !user.isSubscribed)
+        .catch(err => console.log(err));
+    }
+  };
   return (
     <>
-      {modalOpen && <SubScribeModal modalOpen={setModalOpen} modalStatus={modalOpen}/>}
+      {modalOpen && <SubScribeModal modalOpen={setModalOpen} modalStatus={modalOpen} message={modalMessage} />}
       <Header title="유망주" />
       <Wrapper>
         <InfoBox>
           <LeftDiv>
-            <img src="/img/pro_temp_img.png" alt="player_img" />
-            <div className="hana-regular">30 ST 이승현</div>
+            <img src={user.profile} alt="player_img" />
+            <div className="hana-regular">
+              {user.position} {user.name}
+            </div>
           </LeftDiv>
           <RightDiv className="font-sans">
             <div>생년월일</div>
-            <div>1998.06.17</div>
+            <div>{user.birthDate.getFullYear() + "." + user.birthDate.getMonth() + "." + user.birthDate.getDay()}</div>
             <div>국적</div>
-            <div>대한민국</div>
+            <div>{user.nation}</div>
             <div>신장/체중</div>
-            <div>170cm/67kg</div>
+            <div>
+              {user.height}cm/{user.weight}kg
+            </div>
             <div>출신고교/유스</div>
-            <div>한솔고등학교</div>
+            <div>{user.youth}</div>
           </RightDiv>
         </InfoBox>
         <ApealDiv>
           <TextBox>
             <span className="hana-bold">나의 비전</span>
-            <p className="hana-regular">열시미 하겠습니다</p>
+            <p className="hana-regular">{user.vision}</p>
           </TextBox>
           <TextBox>
             <span className="hana-bold">비전을 위한 노력</span>
-            <p className="hana-regular">열시미 하겠습니다</p>
+            <p className="hana-regular">{user.effort}</p>
           </TextBox>
           <TextBox>
             <span className="hana-bold">장점</span>
-            <p className="hana-regular">열시미 하겠습니다</p>
+            <p className="hana-regular">{user.advantage}</p>
           </TextBox>
         </ApealDiv>
         <VideoBox>
           <YouTube videoId={videoId} opts={opts} />
         </VideoBox>
         <SubDiv
-          className={isSub ? "sub hana-bold" : "not-sub hana-bold"}
+          className={user.isSubscribed ? "sub hana-bold" : "not-sub hana-bold"}
           onClick={() => {
-            setIsSub(prev => !prev);
             setModalOpen(true);
+            updateSubscribe();
           }}
         >
           {subMessage}
