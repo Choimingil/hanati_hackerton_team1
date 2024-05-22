@@ -12,6 +12,7 @@ public record GetPlayerDetailRes(
 	String youth,
 	boolean isGoalKeeper,
 	String position,
-	int backNum
+	int backNum,
+	long price
 ) {
 }
