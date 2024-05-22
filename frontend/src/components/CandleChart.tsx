@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 
-const CandleChart = () => {
+interface ChartProps {
+  title: boolean;
+}
+
+const CandleChart = ({title}: ChartProps) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +21,7 @@ const CandleChart = () => {
         },
       },
       title: {
-        text: "가격",
+        text: title? "가격" : "", 
         align: "center",
         style: {
           fontSize: "16px",
