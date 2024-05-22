@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import NotiIcon from "../images/noti_icon.png";
+import NotiIcon from "../f_images/noti_icon.png";
 import { useNavigate } from "react-router-dom";
 
 interface HeadProps {

@@ -45,6 +45,7 @@ export const ProUserDiv = styled.div`
   border-radius: 10px;
   cursor: pointer;
   font-size: 0;
+  border: 1px solid gray;
 `;
 
 export const ProUserImage = styled.img`
@@ -59,9 +60,7 @@ const PriceBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 70px;
-  border: 1px solid gray;
   border-radius: 0px 0px 10px 10px;
-  border-top: none;
   gap: 0;
   .price {
     font-size: 18px;

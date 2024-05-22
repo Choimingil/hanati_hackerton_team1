@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Search_icon from "../images/search_icon.png";
+import Search_icon from "../f_images/search_icon.png";
 
 function SearchBar() {
   return (

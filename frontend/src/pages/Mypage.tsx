@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import { TeamTitle } from "./ProList";
-import Amblem from "../images/amblem/hana_citizen_amblem.png";
+import Amblem from "../f_images/amblem/hana_citizen_amblem.png";
 import styled from "styled-components";
 import UnderBar from "../components/UnderBar";
 import PieChart from "../components/PieChart";

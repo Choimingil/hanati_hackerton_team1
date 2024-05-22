@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Overlay } from "./OrderModal";
 import styled, { keyframes } from "styled-components";
-import Character from "../images/character.png";
+import Character from "../f_images/character.png";
 
 interface ChildProps {
   modalOpen: React.Dispatch<React.SetStateAction<boolean>>;

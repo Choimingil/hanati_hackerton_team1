@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import { ListContainer } from "./ProList";
 import ProspectUserBox from "../components/ProspectUserBox";
-import CitizenTitle from "../images/citizen_title.png";
+import CitizenTitle from "../f_images/citizen_title.png";
 import UnderBar from "../components/UnderBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +75,14 @@ function ProspectList() {
 
       <ProspectListContainer>
         {data.map(dt => (
-          <ProspectUserBox id={dt.id} name={dt.name} cntSub={dt.cntSub} profile={dt.profile} position={dt.position} onClick={()=>navigation(`/prospectDetail/${dt.id}`)}/>
+          <ProspectUserBox
+            id={dt.id}
+            name={dt.name}
+            cntSub={dt.cntSub}
+            profile={dt.profile}
+            position={dt.position}
+            onClick={() => navigation(`/prospectDetail/${dt.id}`)}
+          />
         ))}
       </ProspectListContainer>
       <UnderBar />

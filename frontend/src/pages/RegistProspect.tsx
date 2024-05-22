@@ -2,10 +2,9 @@ import React, { ChangeEvent, useState, useRef } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import UnderBar from "../components/UnderBar";
-import PlusIcon from "../images/plus_icon.png";
+import PlusIcon from "../f_images/plus_icon.png";
 import { TextField, Input, Button } from "@mui/material";
 import { DatePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const VisuallyHiddenInput = styled("input")({

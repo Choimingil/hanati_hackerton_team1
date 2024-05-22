@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import formatMoney from "../util/formatMoney";
-import Character from "../images/character.png";
+import Character from "../f_images/character.png";
 
 interface ChildProps {
   modalOpen: React.Dispatch<React.SetStateAction<boolean>>;

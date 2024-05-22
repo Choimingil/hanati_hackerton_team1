@@ -37,8 +37,6 @@ const SubBox = styled.div`
   height: 60px;
   color: black;
   font-size: 16px;
-  border: 1px solid gray;
-  border-top: none;
   border-radius: 0px 0px 10px 10px;
   gap: 0;
   p {

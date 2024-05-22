@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProUserBox from "../components/ProUserBox";
 import Header from "../components/Header";
-import Amblem from "../images/amblem/hana_citizen_amblem.png";
+import Amblem from "../f_images/amblem/hana_citizen_amblem.png";
 import UnderBar from "../components/UnderBar";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
 const tempData = [
   {
@@ -66,22 +66,23 @@ const tempData = [
   },
 ];
 
-
-
 function ProList() {
   const navigation = useNavigate();
 
-  const [users, setUsers] = useState([{
-    id: 1,
-    profile: "",
-    name: "",
-    number: 0,
-    price: 0,
-    position: "",
-  }]);
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      profile: "",
+      name: "",
+      number: 0,
+      price: 0,
+      position: "",
+    },
+  ]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/teams/1')
+    axios
+      .get("http://localhost:8080/teams/1")
       .then(response => {
         console.log(response);
         setUsers(response.data.data);
@@ -92,20 +93,22 @@ function ProList() {
   }, []);
 
   const makeProBox = () => {
-    const boxes = users && users.map(data => (
-      <ProUserBox
-        id={data.id}
-        imgUrl={data.profile}
-        name={data.name}
-        number={data.number}
-        price={data.price}
-        position={data.position}
-        onClick={() => navigation(`/proDetail/${data.id}`)}
-      ></ProUserBox>
-    ))
+    const boxes =
+      users &&
+      users.map(data => (
+        <ProUserBox
+          id={data.id}
+          imgUrl={data.profile}
+          name={data.name}
+          number={data.number}
+          price={data.price}
+          position={data.position}
+          onClick={() => navigation(`/proDetail/${data.id}`)}
+        ></ProUserBox>
+      ));
 
     return boxes;
-  }
+  };
 
   return (
     <>
@@ -114,9 +117,7 @@ function ProList() {
         <img src={Amblem} alt="title_img" />
         <p className="hana-bold">대전 하나 시티즌</p>
       </TeamTitle>
-      <ListContainer>
-        {makeProBox()}
-      </ListContainer>
+      <ListContainer>{makeProBox()}</ListContainer>
       <UnderBar />
     </>
   );

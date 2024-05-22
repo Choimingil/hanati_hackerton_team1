@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
-import CitizenTitle from "../images/citizen_title.png";
+import CitizenTitle from "../f_images/citizen_title.png";
 import styled from "styled-components";
 import RadarChart from "../components/RaderChart";
 import CandleChart from "../components/CandleChart";
 import UnderBar from "../components/UnderBar";
 import OrderModal from "../components/OrderModal";
-import axios from "axios"
+import axios from "axios";
 
 function ProDetail() {
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const tempdate = new Date();
@@ -24,7 +23,7 @@ function ProDetail() {
     youth: "",
     isGoalkeeper: 0,
     position: "",
-    backNum: 0
+    backNum: 0,
   });
 
   const location = useLocation();
@@ -37,9 +36,10 @@ function ProDetail() {
   console.log(pro_id);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/players/${pro_id}`)
+    axios
+      .get(`http://localhost:8080/players/${pro_id}`)
       .then(response => {
-        console.log(response.data);  // 응답 데이터 확인
+        console.log(response.data); // 응답 데이터 확인
         const userData = response.data;
         userData.birthDay = new Date(userData.birthDay); // 문자열을 Date 객체로 변환
         setUsers(userData);
@@ -47,12 +47,11 @@ function ProDetail() {
       .catch(error => {
         console.log(error);
       });
-  }, [pro_id]);  // pro_id 의존성 추가
+  }, [pro_id]); // pro_id 의존성 추가
 
   useEffect(() => {
-    console.log(users);  // users 상태 변경 시 로그 출력
+    console.log(users); // users 상태 변경 시 로그 출력
   }, [users]);
-
 
   return (
     <>
@@ -63,15 +62,19 @@ function ProDetail() {
         <InfoBox>
           <LeftDiv>
             <img src={users.profile} alt="player_img" />
-            <div className="hana-regular">{users.backNum} {users.position} {users.name}</div>
+            <div className="hana-regular">
+              {users.backNum} {users.position} {users.name}
+            </div>
           </LeftDiv>
           <RightDiv className="font-sans">
             <div>생년월일</div>
-            <div>{users.birthDay.getFullYear() + '.' + users.birthDay.getMonth() + '.' + users.birthDay.getDay()}</div>
+            <div>{users.birthDay.getFullYear() + "." + users.birthDay.getMonth() + "." + users.birthDay.getDay()}</div>
             <div>국적</div>
             <div>{users.nation}</div>
             <div>신장/체중</div>
-            <div>{users.height}cm/{users.weight}kg</div>
+            <div>
+              {users.height}cm/{users.weight}kg
+            </div>
             <div>출신교</div>
             <div>{users.youth}</div>
           </RightDiv>
@@ -114,7 +117,7 @@ export const LeftDiv = styled.div`
   font-size: 0;
   img {
     width: 132px;
-    height: 150px;
+    height: 160px;
   }
   div {
     text-align: center;
