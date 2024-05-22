@@ -39,7 +39,7 @@ function ProUserBox({ id, imgUrl, name, number, price, position, onClick }: ProU
 
 export default ProUserBox;
 
-const ProUserDiv = styled.div`
+export const ProUserDiv = styled.div`
   width: 105px;
   height: 245px;
   border-radius: 10px;
@@ -47,7 +47,7 @@ const ProUserDiv = styled.div`
   font-size: 0;
 `;
 
-const ProUserImage = styled.img`
+export const ProUserImage = styled.img`
   width: 105px;
   height: 150px;
   border-radius: 10px 10px 0 0;
@@ -78,7 +78,7 @@ const PriceBox = styled.div`
     color: #eb1202;
   }
 `;
-const NameBox = styled.div`
+export const NameBox = styled.div`
   width: 105px;
   height: 30px;
   display: flex;

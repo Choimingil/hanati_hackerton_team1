@@ -1,68 +1,103 @@
-import React, { Dispatch, SetStateAction } from "react";
-import styled from "styled-components";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import CountBox from "./CountBox";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import formatMoney from "../util/formatMoney";
+import Character from "../images/character.png";
 
 interface ChildProps {
-    modalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  }
+  modalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  modalOpenStatus: boolean;
+}
+interface modalProps {
+  orderStatus: boolean;
+}
 
-function OrderModal({modalOpen}:ChildProps) {
-  const [way, setWay] = React.useState("");
+function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
+  const [way, setWay] = useState("");
+  const [orderStatus, setOrderStatus] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const handleChange = (event: SelectChangeEvent) => {
     setWay(event.target.value);
   };
   const handleModal = (e: React.MouseEvent) => {
     e.stopPropagation();
-  }
+  };
+  useEffect(() => {
+    if (orderStatus) {
+      const timer = setTimeout(() => {
+        setOrderStatus(false);
+        modalOpen(false);
+      }, 3000);
+      setIsModalOpen(false);
+      return () => clearTimeout(timer);
+    }
+  }, [orderStatus]);
   return (
-    <Overlay onClick={() => modalOpen(false)} >
-      <Modal onClick={handleModal}>
-        <TopBox className="hana-bold">
-          <div style={{ color: "#008476" }}>매수</div>
-          <div>매도</div>
-          <div>미채결</div>
-        </TopBox>
-        <OptionContainer>
-          <FormControl sx={{ m: 1, minWidth: "70%", border: "1px solid black", borderRadius: 2 }}>
-            <Select className="hana-bold" value={way} onChange={handleChange} displayEmpty inputProps={{ "aria-label": "Without label" }}>
-              <MenuItem value="">
-                <em>지정가</em>
-              </MenuItem>
-              <MenuItem value={10}>지정가</MenuItem>
-              <MenuItem value={20}>시장가</MenuItem>
-              <MenuItem value={30}>시간외종가</MenuItem>
-              <MenuItem value={30}>시간외단일가</MenuItem>
-            </Select>
-          </FormControl>
-          <div className="point-box hana-bold">시장가</div>
-        </OptionContainer>
-        <CountContainer>
-          <CountBox type="price" size={27812} />
-          <CountBox type="token" size={0} />
-        </CountContainer>
-        <ResultBox className="hana-bold">
-          <FlexBox>
-            <p>매수가능금액</p>
-            <p>{formatMoney(54252)}원</p>
-          </FlexBox>
-          <FlexBox>
-            <p>주문금액</p>
-            <p>0원</p>
-          </FlexBox>
-        </ResultBox>
-        <BuyButton className="hana-regular">현금매수</BuyButton>
-      </Modal>
-    </Overlay>
+    <>
+      {orderStatus && (
+        <OrderFinModal orderStatus={orderStatus}>
+          <img src={Character} alt="character" />
+          <p className="hana-bold">주문이 체결되었습니다.</p>
+        </OrderFinModal>
+      )}
+      <Overlay onClick={() => modalOpen(false)}>
+        {isModalOpen && (
+          <Modal onClick={handleModal}>
+            <TopBox className="hana-bold">
+              <div style={{ color: "#008476" }}>매수</div>
+              <div>매도</div>
+              <div>미채결</div>
+            </TopBox>
+            <OptionContainer>
+              <FormControl sx={{ m: 1, minWidth: "70%", border: "1px solid black", borderRadius: 2 }}>
+                <Select
+                  className="hana-bold"
+                  value={way}
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  <MenuItem value="">
+                    <em>지정가</em>
+                  </MenuItem>
+                  <MenuItem value={10}>지정가</MenuItem>
+                  <MenuItem value={20}>시장가</MenuItem>
+                  <MenuItem value={30}>시간외종가</MenuItem>
+                  <MenuItem value={30}>시간외단일가</MenuItem>
+                </Select>
+              </FormControl>
+              <div className="point-box hana-bold">시장가</div>
+            </OptionContainer>
+            <CountContainer>
+              <CountBox type="price" size={27812} />
+              <CountBox type="token" size={0} />
+            </CountContainer>
+            <ResultBox className="hana-bold">
+              <FlexBox>
+                <p>매수가능금액</p>
+                <p>{formatMoney(54252)}원</p>
+              </FlexBox>
+              <FlexBox>
+                <p>주문금액</p>
+                <p>0원</p>
+              </FlexBox>
+            </ResultBox>
+            <BuyButton className="hana-regular" onClick={() => setOrderStatus(true)}>
+              현금매수
+            </BuyButton>
+          </Modal>
+        )}
+      </Overlay>
+    </>
   );
 }
 
 export default OrderModal;
 
-const Overlay = styled.div`
+export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,4 +184,41 @@ const BuyButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
+`;
+
+const OrderFinModal = styled.div<modalProps>`
+  width: 430px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  z-index: 5;
+  animation: ${props => (props.orderStatus ? fadeIn : fadeOut)} 0.5s forwards;
+  color: black;
+  img {
+    height: 130px;
+  }
+  font-size: 22px;
+`;
+
+export const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 `;

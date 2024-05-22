@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
 import CitizenTitle from "../images/citizen_title.png";
 import styled from "styled-components";
@@ -8,10 +8,10 @@ import UnderBar from "../components/UnderBar";
 import OrderModal from "../components/OrderModal";
 
 function ProDetail() {
-    const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-    {modalOpen && <OrderModal modalOpen={setModalOpen}/>}
+      {modalOpen && <OrderModal modalOpen={setModalOpen} modalOpenStatus={modalOpen}/>}
       <Header title="대전하나시티즌" />
       <Wrapper>
         <img src={CitizenTitle} alt="title_img" />
@@ -38,13 +38,15 @@ function ProDetail() {
           <p className="hana-medium">
             🚨 <b>20대</b>의 <b>32%</b>가 <b>이승현 토큰</b>을 구매했어요!{" "}
           </p>
-          <CandleChart />
+          <CandleChart title={true}/>
         </CandleContainer>
         <OrderBox className="hana-regular">
           <div>현재 가격</div>
           <div>현재 보유량</div>
         </OrderBox>
-        <OrderButton className="hana-bold" onClick={()=>setModalOpen(true)}>주문하기</OrderButton>
+        <OrderButton className="hana-bold" onClick={() => setModalOpen(true)}>
+          주문하기
+        </OrderButton>
       </Wrapper>
       <UnderBar />
     </>
@@ -53,7 +55,7 @@ function ProDetail() {
 
 export default ProDetail;
 
-const InfoBox = styled.div`
+export const InfoBox = styled.div`
   display: flex;
   height: 180px;
   border-bottom: 1px solid gray;
@@ -61,7 +63,7 @@ const InfoBox = styled.div`
   gap: 0;
 `;
 
-const LeftDiv = styled.div`
+export const LeftDiv = styled.div`
   width: 132px;
   height: 180px;
   font-size: 0;
@@ -79,7 +81,7 @@ const LeftDiv = styled.div`
   }
 `;
 
-const RightDiv = styled.div`
+export const RightDiv = styled.div`
   width: 299px;
   height: 180px;
   background-color: white;

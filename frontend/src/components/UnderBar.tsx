@@ -12,7 +12,7 @@ function UnderBar() {
     <BarDiv>
         <BarIcon src={ComIcon} onClick={() => navigation("/community")}/>
         <BarIcon src={ProIcon} onClick={() => navigation("/proList")}/>
-        <BarIcon src={YouthIcon} onClick={() => navigation("/youthList")}/>
+        <BarIcon src={YouthIcon} onClick={() => navigation("/prospectList")}/>
         <BarIcon src={MypageIcon} onClick={() => navigation("/mypage")}/>
     </BarDiv>
   );
