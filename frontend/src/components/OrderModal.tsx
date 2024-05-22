@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import CountBox from "./CountBox";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import formatMoney from "../util/formatMoney";
 import Character from "../f_images/character.png";
+import axios from "axios"
 
 interface ChildProps {
   modalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,15 +17,23 @@ interface modalProps {
   orderStatus: boolean;
 }
 
+
+
+
 function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
   const [way, setWay] = useState("");
+
   const [orderStatus, setOrderStatus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [totalprice, setTotalprice] = useState(0);
+  const location = useLocation();
+  const pro_id = location.pathname.slice(11);
   const handleChange = (event: SelectChangeEvent) => {
     setWay(event.target.value);
   };
   const handleModal = (e: React.MouseEvent) => {
     e.stopPropagation();
+
   };
   useEffect(() => {
     if (orderStatus) {
@@ -49,7 +59,7 @@ function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
             <TopBox className="hana-bold">
               <div style={{ color: "#008476" }}>매수</div>
               <div>매도</div>
-              <div>미채결</div>
+              <div>미체결</div>
             </TopBox>
             <OptionContainer>
               <FormControl sx={{ m: 1, minWidth: "70%", border: "1px solid black", borderRadius: 2 }}>
@@ -85,7 +95,15 @@ function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
                 <p>0원</p>
               </FlexBox>
             </ResultBox>
-            <BuyButton className="hana-regular" onClick={() => setOrderStatus(true)}>
+            <BuyButton className="hana-regular" onClick={() => {
+              setOrderStatus(true);
+
+              const data = {
+                tokenPrice: 100000,
+                tokenCount: 18,
+              };
+              axios.post(`http://localhost:8080/players/${pro_id}/buy`, data);
+            }}>
               현금매수
             </BuyButton>
           </Modal>
