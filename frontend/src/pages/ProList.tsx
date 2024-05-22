@@ -66,25 +66,46 @@ const tempData = [
   },
 ];
 
+
+
 function ProList() {
   const navigation = useNavigate();
-  // axios.get('http://localhost:8080/teams/1').
-  //   then(function (response) {
-  //     console.log(response.data);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
 
+  const [users, setUsers] = useState([{
+    id: 1,
+    profile: "",
+    name: "",
+    number: 0,
+    price: 0,
+    position: "",
+  }]);
 
-  const [users, setUsers] = useState(null);
   useEffect(() => {
     axios.get('http://localhost:8080/teams/1')
       .then(response => {
-        setUsers(response.data);
+        console.log(response);
+        setUsers(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-  });
-  console.log(users);
+  }, []);
+
+  const makeProBox = () => {
+    const boxes = users && users.map(data => (
+      <ProUserBox
+        id={data.id}
+        imgUrl={data.profile}
+        name={data.name}
+        number={data.number}
+        price={data.price}
+        position={data.position}
+        onClick={() => navigation(`/proDetail/${data.id}`)}
+      ></ProUserBox>
+    ))
+
+    return boxes;
+  }
 
   return (
     <>
@@ -94,17 +115,7 @@ function ProList() {
         <p className="hana-bold">대전 하나 시티즌</p>
       </TeamTitle>
       <ListContainer>
-        {tempData.map(data => (
-          <ProUserBox
-            id={data.id}
-            imgUrl={data.imgUrl}
-            name={data.name}
-            number={data.number}
-            price={data.price}
-            position={data.position}
-            onClick={() => navigation(`/proDetail/${data.id}`)}
-          ></ProUserBox>
-        ))}
+        {makeProBox()}
       </ListContainer>
       <UnderBar />
     </>
