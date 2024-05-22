@@ -10,20 +10,20 @@ interface DataProps {
 
 const data = [
   {
-    id: "이승현",
-    label: "이승현",
+    id: "문상도",
+    label: "문상도",
     value: 442,
     color: "hsl(104, 70%, 50%)",
   },
   {
-    id: "신현창",
-    label: "신현창",
+    id: "박근영",
+    label: "박근영",
     value: 588,
     color: "hsl(185, 70%, 50%)",
   },
   {
-    id: "이현진",
-    label: "이현진",
+    id: "김흥만",
+    label: "김흥만",
     value: 405,
     color: "hsl(297, 70%, 50%)",
   },

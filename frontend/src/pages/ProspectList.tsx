@@ -43,7 +43,7 @@ function ProspectList() {
           <ProspectUserBox
             id={dt.id}
             name={dt.name}
-            cntSub={dt.cntSub}
+            cntSub={dt.cntSub+20000}
             profile={dt.profile}
             position={dt.position}
             onClick={() => navigation(`/prospectDetail/${dt.id}`)}

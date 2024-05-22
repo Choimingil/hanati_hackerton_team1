@@ -74,7 +74,7 @@ export const ListContainer = styled.div`
   justify-items: center;
   background-color: white;
   padding: 35px 0px 35px 0px;
-  height: 580px;
+  height: 585px;
   overflow: auto;
 `;
 

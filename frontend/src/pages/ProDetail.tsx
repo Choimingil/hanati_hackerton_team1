@@ -8,10 +8,12 @@ import CandleChart from "../components/CandleChart";
 import UnderBar from "../components/UnderBar";
 import OrderModal from "../components/OrderModal";
 import axios from "axios";
+import { useStore } from "zustand";
+import { usePrice } from "../store/priceStore";
 
 function ProDetail() {
+  const { setPrice } = useStore(usePrice);
   const [modalOpen, setModalOpen] = useState(false);
-
   const tempdate = new Date();
   const [users, setUsers] = useState({
     profile: "",
@@ -43,6 +45,11 @@ function ProDetail() {
         const userData = response.data;
         userData.birthDay = new Date(userData.birthDay); // 문자열을 Date 객체로 변환
         setUsers(userData);
+        if(userData.price < 0) {
+          setPrice(userData.price * -1)
+        } else {
+          setPrice(userData.price)
+        }
       })
       .catch(error => {
         console.log(error);
@@ -88,10 +95,10 @@ function ProDetail() {
           </p>
           <CandleChart title={true} />
         </CandleContainer>
-        <OrderBox className="hana-regular">
+        {/* <OrderBox className="hana-regular">
           <div>현재 가격</div>
           <div>현재 보유량</div>
-        </OrderBox>
+        </OrderBox> */}
         <OrderButton className="hana-bold" onClick={() => setModalOpen(true)}>
           주문하기
         </OrderButton>
@@ -199,6 +206,7 @@ const OrderButton = styled.button`
   margin: 0 auto;
   border: 1px solid gray;
   font-size: 18px;
-  background-color: white;
+  background-color:#D3E7E4;
+  color: black;
   cursor: pointer;
 `;

@@ -8,6 +8,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import formatMoney from "../util/formatMoney";
 import Character from "../f_images/character.png";
 import axios from "axios"
+import { useStore } from "zustand";
+import { usePrice } from "../store/priceStore";
 
 interface ChildProps {
   modalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +24,7 @@ interface modalProps {
 
 function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
   const [way, setWay] = useState("");
+  const {sto_price, sto_token, setPrice, setToken} = useStore(usePrice);
 
   const [orderStatus, setOrderStatus] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -82,25 +85,25 @@ function OrderModal({ modalOpen, modalOpenStatus }: ChildProps) {
               <div className="point-box hana-bold">시장가</div>
             </OptionContainer>
             <CountContainer>
-              <CountBox type="price" size={27812} />
-              <CountBox type="token" size={0} />
+              <CountBox type="price" size={sto_price} />
+              <CountBox type="token" size={sto_token} />
             </CountContainer>
             <ResultBox className="hana-bold">
               <FlexBox>
                 <p>매수가능금액</p>
-                <p>{formatMoney(54252)}원</p>
+                <p>{formatMoney(20240523)}원</p>
               </FlexBox>
               <FlexBox>
                 <p>주문금액</p>
-                <p>0원</p>
+                <p>{formatMoney(sto_price * sto_token)}원</p>
               </FlexBox>
             </ResultBox>
             <BuyButton className="hana-regular" onClick={() => {
               setOrderStatus(true);
 
               const data = {
-                tokenPrice: 100000,
-                tokenCount: 18,
+                tokenPrice: sto_price,
+                tokenCount: sto_token,
               };
               axios.post(`http://localhost:8080/players/${pro_id}/buy`, data);
             }}>

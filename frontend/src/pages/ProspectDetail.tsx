@@ -7,8 +7,12 @@ import YouTube from "react-youtube";
 import SubScribeModal from "../components/SubScribeModal";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useStore } from "zustand";
+import { usePrice } from "../store/priceStore";
 
 function ProspectDetail() {
+    const {sto_price, sto_token, setPrice, setToken} = useStore(usePrice);
+
   const [isSub, setIsSub] = useState(false); // 구독여부 받아서 수정
   const [modalOpen, setModalOpen] = useState(false);
   const [userId, setUserId] = useState(0);
@@ -46,6 +50,7 @@ function ProspectDetail() {
       userData.birthDate = new Date(userData.birthDate);
       console.log(userData);
       setUser(userData);
+      setPrice(userData.price);
       // setIsSub(userData.isSubscribed);
     });
   }, [user_id]);
