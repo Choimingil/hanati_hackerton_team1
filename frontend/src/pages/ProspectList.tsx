@@ -8,64 +8,6 @@ import UnderBar from "../components/UnderBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const data = [
-  {
-    id: 1,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 2,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 3,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 4,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 5,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 6,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 7,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-  {
-    id: 8,
-    name: "신현창",
-    cntSub: 1001,
-    profile: "img/pro_temp_img.png",
-    position: "ST",
-  },
-];
 
 function ProspectList() {
   const navigation = useNavigate();
@@ -84,7 +26,6 @@ function ProspectList() {
     axios
       .get("http://localhost:8080/prospects")
       .then(response => {
-        console.log(response);
         setUsers(response.data.data);
       })
       .catch(function (error) {

@@ -7,65 +7,6 @@ import UnderBar from "../components/UnderBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const tempData = [
-  {
-    id: 1,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 1,
-    price: 20000,
-    position: "GK",
-  },
-  {
-    id: 2,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 10,
-    price: 80000,
-    position: "ST",
-  },
-  {
-    id: 3,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 30,
-    price: 12832,
-    position: "FW",
-  },
-  {
-    id: 4,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 99,
-    price: 30018,
-    position: "MF",
-  },
-  {
-    id: 5,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 92,
-    price: 11213,
-    position: "MF",
-  },
-  {
-    id: 6,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 0,
-    price: 28193,
-    position: "MF",
-  },
-  {
-    id: 7,
-    imgUrl: "img/pro_temp_img.png",
-    name: "이승현",
-    number: 99,
-    price: 30018,
-    position: "MF",
-  },
-];
-
 function ProList() {
   const navigation = useNavigate();
 

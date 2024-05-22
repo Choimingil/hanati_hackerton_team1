@@ -6,9 +6,10 @@ import Character from "../f_images/character.png";
 interface ChildProps {
   modalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   modalStatus: boolean;
+  message: string;
 }
 
-function SubScribeModal({ modalOpen, modalStatus }: ChildProps) {
+function SubScribeModal({ modalOpen, modalStatus, message }: ChildProps) {
   useEffect(() => {
     if (modalStatus) {
       const timer = setTimeout(() => {
@@ -21,7 +22,7 @@ function SubScribeModal({ modalOpen, modalStatus }: ChildProps) {
     <Overlay>
       <Modal>
         <img src={Character} alt="character" />
-        <p className="hana-regular">구독이 완료되었습니다.</p>
+        <p className="hana-regular">{message}</p>
       </Modal>
     </Overlay>
   );
