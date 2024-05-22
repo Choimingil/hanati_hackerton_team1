@@ -30,7 +30,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 	@Query(
 		"select new com.hanati.team1.src.players.models.GetPlayerDetailRes(p.playerProfile, p.playerName, p.playerBirth, p.playerNation, p.playerWeight, p.playerHeight, p.playerYouth, case when pp.positionName = 'GK' then true else false end, pp.positionName, (select tbp.playerBacknum from TeamByPlayer tbp where tbp.playerId = p.playerId and tbp.endDate >= now())) "
 			+ "from Player p "
-			+ "inner join Position pp on pp.playerId = p.playerId "
+			+ "inner join Position pp on pp.playerId = p.playerId and pp.positionLevel = 10 "
 			+ "where p.playerId = :playerId")
 	Optional<GetPlayerDetailRes> findPlayerById(@Param("playerId") long playerId);
 }
