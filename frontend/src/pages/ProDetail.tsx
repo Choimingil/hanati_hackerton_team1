@@ -24,6 +24,7 @@ function ProDetail() {
     youth: "",
     isGoalkeeper: 0,
     position: "",
+    backNum: 0
   });
 
   const location = useLocation();
@@ -62,7 +63,7 @@ function ProDetail() {
         <InfoBox>
           <LeftDiv>
             <img src={users.profile} alt="player_img" />
-            <div className="hana-regular">27 {users.position} {users.name}</div>
+            <div className="hana-regular">{users.backNum} {users.position} {users.name}</div>
           </LeftDiv>
           <RightDiv className="font-sans">
             <div>생년월일</div>
