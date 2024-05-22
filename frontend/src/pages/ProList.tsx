@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProUserBox from "../components/ProUserBox";
 import Header from "../components/Header";
 import Amblem from "../images/amblem/hana_citizen_amblem.png";
 import UnderBar from "../components/UnderBar";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const tempData = [
   {
@@ -65,8 +66,47 @@ const tempData = [
   },
 ];
 
+
+
 function ProList() {
   const navigation = useNavigate();
+
+  const [users, setUsers] = useState([{
+    id: 1,
+    profile: "",
+    name: "",
+    number: 0,
+    price: 0,
+    position: "",
+  }]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/teams/1')
+      .then(response => {
+        console.log(response);
+        setUsers(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const makeProBox = () => {
+    const boxes = users && users.map(data => (
+      <ProUserBox
+        id={data.id}
+        imgUrl={data.profile}
+        name={data.name}
+        number={data.number}
+        price={data.price}
+        position={data.position}
+        onClick={() => navigation(`/proDetail/${data.id}`)}
+      ></ProUserBox>
+    ))
+
+    return boxes;
+  }
+
   return (
     <>
       <Header title="선수목록" />
@@ -75,17 +115,7 @@ function ProList() {
         <p className="hana-bold">대전 하나 시티즌</p>
       </TeamTitle>
       <ListContainer>
-        {tempData.map(data => (
-          <ProUserBox
-            id={data.id}
-            imgUrl={data.imgUrl}
-            name={data.name}
-            number={data.number}
-            price={data.price}
-            position={data.position}
-            onClick={() => navigation(`/proDetail/${data.id}`)}
-          ></ProUserBox>
-        ))}
+        {makeProBox()}
       </ListContainer>
       <UnderBar />
     </>
